@@ -55,13 +55,13 @@ DEFAULT_DATABRICKS_PROFILE="${DEFAULT_DATABRICKS_PROFILE-DEFAULT}"
 DEFAULT_WAREHOUSE_ID="d2096aa075ad44a3"
 
 # Unity Catalog
-DEFAULT_REGISTRY_CATALOG="benoit_cayla"
+DEFAULT_REGISTRY_CATALOG="databricks_dev"
 # UC schema for the Volume registry
-DEFAULT_REGISTRY_SCHEMA="ontobricks_demo_08_repository"
+DEFAULT_REGISTRY_SCHEMA="ontobricks_demo"
 DEFAULT_REGISTRY_VOLUME="registry"
 
 # Lakebase Autoscaling project + branch
-DEFAULT_LAKEBASE_PROJECT="ontobricks-demo-08-registry"
+DEFAULT_LAKEBASE_PROJECT="ontodemo-registry"
 DEFAULT_LAKEBASE_BRANCH="production"
 # Postgres database (datname) on the shared Lakebase instance — the value of
 # status.postgres_database from list-databases (underscores OK). Do NOT copy the
