@@ -1,0 +1,71 @@
+command:
+  - "uv"
+  - "run"
+  - "--frozen"
+  - "--no-dev"
+  - "--extra"
+  - "lakebase"
+  - "python"
+  - "run.py"
+
+env:
+  - name: DATABRICKS_SQL_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: DATABRICKS_SQL_WAREHOUSE_ID_DEFAULT
+    value: "d2096aa075ad44a3"
+  - name: DATABRICKS_TRIPLESTORE_TABLE
+    value: "databricks_dev.ontobricks_demo.default_triplestore"
+  - name: REGISTRY_VOLUME_PATH
+    valueFrom: volume
+  - name: REGISTRY_CATALOG
+    value: "databricks_dev"
+  - name: REGISTRY_SCHEMA
+    value: "ontobricks_demo"
+  - name: REGISTRY_VOLUME
+    value: "registry"
+  - name: MCP_APP_NAME
+    value: "mcp-ontodemo"
+  - name: LAKEBASE_SCHEMA
+    value: "ontobricks_demo"
+  - name: LAKEBASE_PROJECT
+    value: "ontodemo-registry"
+  - name: LAKEBASE_DATABASE
+    value: "ontobricks_demo_08_registry_db"
+  - name: LAKEBASE_BRANCH
+    value: "production"
+  - name: ONTOBRICKS_SYNC_UC_CATALOG
+    value: ""
+  - name: MLFLOW_TRACKING_URI
+    value: "databricks"
+  - name: ONTOBRICKS_ANALYTICS_MAX_TRIPLES
+    value: "500000"
+  - name: ONTOBRICKS_ANALYTICS_TOP_N
+    value: "100"
+  - name: ONTOBRICKS_ANALYTICS_JOB_ENABLED
+    value: "false"
+  - name: ONTOBRICKS_ANALYTICS_JOB_NAME
+    value: ""
+  - name: ONTOBRICKS_ANALYTICS_JOB_PAGERANK_ITERATIONS
+    value: "20"
+  - name: ONTOBRICKS_ANALYTICS_JOB_PIVOTS
+    value: "64"
+
+authorization:
+  user:
+    scopes:
+      - iam.current-user:read
+      - iam.access-control:read
+
+resources:
+  - name: sql-warehouse
+    description: "SQL Warehouse for executing queries and metadata operations"
+    sql_warehouse:
+      permission: CAN_USE
+  - name: volume
+    description: "Unity Catalog Volume for the OntoBricks domain registry"
+    volume:
+      permission: CAN_READ_WRITE
+  - name: lakebase-db
+    description: "Lakebase Postgres database for the OntoBricks registry"
+    database:
+      permission: CAN_USE
